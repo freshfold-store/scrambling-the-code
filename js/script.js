@@ -18,12 +18,15 @@ function decodeMessage(encoded) {
     }
 }
 
-// Function to handle scrambling
-function scrambleMessage() {
-    const inputField = document.getElementById('messageInput');
-    const outputField = document.getElementById('output');
+// Function to handle scrambling form submission
+function handleScramble(event) {
+    event.preventDefault(); // Prevent form submission that would clear the page
     
-    if (!inputField || !outputField) {
+    const inputField = document.getElementById('userMessage');
+    const outputArea = document.getElementById('outputArea');
+    const outputText = document.getElementById('outputText');
+    
+    if (!inputField || !outputArea || !outputText) {
         console.error('Required elements not found');
         return;
     }
@@ -31,20 +34,25 @@ function scrambleMessage() {
     const message = inputField.value.trim();
     
     if (message === '') {
-        outputField.textContent = 'Please enter a message to scramble.';
+        outputText.textContent = 'Please enter a message to scramble.';
+        outputArea.style.display = 'block';
         return;
     }
     
     const scrambled = encodeMessage(message);
-    outputField.textContent = scrambled;
+    outputText.textContent = scrambled;
+    outputArea.style.display = 'block';
 }
 
-// Function to handle decoding
-function decodeMessageHandler() {
-    const inputField = document.getElementById('messageInput');
-    const outputField = document.getElementById('output');
+// Function to handle decoding form submission
+function handleDecode(event) {
+    event.preventDefault(); // Prevent form submission that would clear the page
     
-    if (!inputField || !outputField) {
+    const inputField = document.getElementById('scrambledCode');
+    const outputArea = document.getElementById('decodeOutputArea');
+    const outputText = document.getElementById('decodeOutputText');
+    
+    if (!inputField || !outputArea || !outputText) {
         console.error('Required elements not found');
         return;
     }
@@ -52,24 +60,26 @@ function decodeMessageHandler() {
     const encoded = inputField.value.trim();
     
     if (encoded === '') {
-        outputField.textContent = 'Please enter an encoded message to decode.';
+        outputText.textContent = 'Please enter an encoded message to decode.';
+        outputArea.style.display = 'block';
         return;
     }
     
     const decoded = decodeMessage(encoded);
-    outputField.textContent = decoded;
+    outputText.textContent = decoded;
+    outputArea.style.display = 'block';
 }
 
 // Initialize event listeners when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    const scrambleBtn = document.getElementById('scrambleBtn');
-    const decodeBtn = document.getElementById('decodeBtn');
+    const scrambleForm = document.getElementById('encodeForm');
+    const decodeForm = document.getElementById('decodeForm');
     
-    if (scrambleBtn) {
-        scrambleBtn.addEventListener('click', scrambleMessage);
+    if (scrambleForm) {
+        scrambleForm.addEventListener('submit', handleScramble);
     }
     
-    if (decodeBtn) {
-        decodeBtn.addEventListener('click', decodeMessageHandler);
+    if (decodeForm) {
+        decodeForm.addEventListener('submit', handleDecode);
     }
 });
