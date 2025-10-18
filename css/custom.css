@@ -1,0 +1,122 @@
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+  background: rgba(255, 255, 255, 0.97)!important;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 18px rgba(86, 86, 161, 0.10);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card {
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(85, 70, 130, 0.08);
+  background: rgba(255,255,255,0.97);
+  margin-bottom: 30px;
+}
+
+.card-header {
+  border-radius: 20px 20px 0 0 !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 60%, #a084e8 100%);
+  color: white;
+  font-size: 1.35rem;
+  border: none;
+}
+
+.bg-success {background: linear-gradient(135deg, #34e89e 0%, #0f3443 100%)!important;}
+.bg-warning {background: linear-gradient(135deg, #ffcc70 0%, #ff8177 100%)!important;}
+.bg-dark {background: linear-gradient(135deg, #232526 0%, #434343 100%)!important;}
+.algo-info {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  padding: 24px 20px;
+  border-radius: 15px;
+  margin-top: 24px;
+  font-size: 1.08rem;
+  box-shadow: 0 2px 18px rgba(248,97,188,0.08);
+}
+
+.btn-primary, .btn-success, .btn-warning {
+  border: none;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-weight: 600;
+  border-radius: 10px;
+  letter-spacing: .5px;
+  font-size: 1.12rem;
+  box-shadow: 0 4px 18px rgba(102, 126, 234, 0.13);
+  padding: 13px 0;
+  transition: transform .22s, box-shadow .22s;
+}
+.btn-primary:hover,
+.btn-success:hover,
+.btn-warning:hover {
+  background: linear-gradient(135deg, #977bfa 0%, #8f6af6 100%);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.25);
+}
+
+.form-control {
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  padding: 12px 14px;
+  font-size: 1rem;
+  transition: all 0.25s;
+}
+
+.form-control:focus {
+  border-color: #764ba2;
+  box-shadow: 0 0 0 0.12rem rgba(118,75,162,0.07);
+}
+
+.code-output {
+  background: #1e1b4b !important;
+  color: #10b981 !important;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 22px 18px;
+  border-radius: 10px;
+  font-size: 1.18rem;
+  min-height: 54px;
+  word-break: break-all;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.bg-light.text-dark {
+  background: #f4f6fa!important;
+  color: #111!important;
+}
+
+.copy-btn {
+  cursor: pointer;
+  transition: color 0.24s;
+  margin-left: 8px;
+}
+.copy-btn:hover {color: #764ba2;}
+
+.alert, #alertMessage {
+  border-radius: 14px;
+  font-size: 1.08rem;
+}
+
+footer {
+  letter-spacing: .5px;
+  border-top: 1px solid rgba(140,140,185,0.14);
+  font-size: 1.06rem;
+}
+
+/* Give the background and cards a slight gradient shadow ring effect */
+.container main-container > .row {
+  filter: drop-shadow(0 10px 24px rgba(86,70,161,.10));
+}
