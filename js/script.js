@@ -70,8 +70,57 @@ function handleDecode(event) {
     outputArea.style.display = 'block';
 }
 
+// Function to copy output to clipboard
+function copyToClipboard() {
+    const outputText = document.getElementById('outputText');
+    if (!outputText) {
+        console.error('Output text element not found');
+        return;
+    }
+    
+    const textToCopy = outputText.textContent;
+    
+    // Use the Clipboard API
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        // Show success feedback
+        const copyBtn = document.getElementById('copyBtn');
+        if (copyBtn) {
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<i class="bi bi-check-circle"></i> Copied!';
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+            }, 2000);
+        }
+    }).catch(err => {
+        console.error('Failed to copy text: ', err);
+    });
+}
+
+// Function to handle navigation
+function handleNavigation(event, targetId) {
+    event.preventDefault(); // Prevent default link behavior
+    
+    if (targetId === 'home') {
+        // Scroll to top of page
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    } else if (targetId === 'history') {
+        // Check if user is logged in (placeholder - would need actual auth check)
+        alert('History feature requires login. Please log in to view your encoding history.');
+    } else if (targetId === 'about') {
+        // Scroll to about section
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+}
+
 // Initialize event listeners when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
+    // Form submission handlers
     const scrambleForm = document.getElementById('encodeForm');
     const decodeForm = document.getElementById('decodeForm');
     
@@ -81,5 +130,28 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (decodeForm) {
         decodeForm.addEventListener('submit', handleDecode);
+    }
+    
+    // Copy to clipboard handler
+    const copyBtn = document.getElementById('copyBtn');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', copyToClipboard);
+    }
+    
+    // Navigation handlers
+    const homeLink = document.getElementById('homeLink');
+    const historyLink = document.getElementById('historyLink');
+    const brandLink = document.getElementById('brandLink');
+    
+    if (homeLink) {
+        homeLink.addEventListener('click', (e) => handleNavigation(e, 'home'));
+    }
+    
+    if (historyLink) {
+        historyLink.addEventListener('click', (e) => handleNavigation(e, 'history'));
+    }
+    
+    if (brandLink) {
+        brandLink.addEventListener('click', (e) => handleNavigation(e, 'home'));
     }
 });
