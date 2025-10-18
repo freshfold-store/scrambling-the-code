@@ -1,50 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrambling the Code - Home</title>
-    <link rel="stylesheet" href="css/custom.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scrambling the Code</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="custom.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container">
-        <header>
-            <h1>Welcome to Scrambling the Code</h1>
-            <p>Your coding journey starts here</p>
-        </header>
-        
-        <main>
-            <section class="hero">
-                <h2>Learn. Code. Succeed.</h2>
-                <p>Join our community of developers and start your coding journey today.</p>
-            </section>
-            
-            <section class="actions">
-                <a href="login.html" class="btn btn-primary">Login</a>
-                <a href="signup.html" class="btn btn-secondary">Sign Up</a>
-            </section>
-            
-            <section class="features">
-                <div class="feature">
-                    <h3>Interactive Learning</h3>
-                    <p>Learn coding with hands-on exercises and real-world projects.</p>
-                </div>
-                
-                <div class="feature">
-                    <h3>Community Support</h3>
-                    <p>Connect with fellow developers and get help when you need it.</p>
-                </div>
-                
-                <div class="feature">
-                    <h3>Track Progress</h3>
-                    <p>Monitor your learning journey and celebrate your achievements.</p>
-                </div>
-            </section>
-        </main>
-        
-        <footer>
-            <p>&copy; 2025 Scrambling the Code. All rights reserved.</p>
-        </footer>
+      <a class="navbar-brand" href="#"><i class="bi bi-code-slash"></i> Scrambling the Code</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto" id="navbarLinks">
+          <li class="nav-item"><a class="nav-link" href="#" id="homeLink">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" id="historyLink">History</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        </ul>
+      </div>
     </div>
+  </nav>
+
+  <div class="container main-container" style="margin-top:90px;margin-bottom:50px;">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card shadow-lg" style="border-radius:20px;">
+          <div class="card-header text-center" style="border-radius:20px 20px 0 0;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;">
+            <h3><i class="bi bi-shuffle"></i> Message Scrambler</h3>
+            <p class="mb-0">Convert your message into a unique scrambled code</p>
+          </div>
+          <div class="card-body p-4">
+            <label class="form-label fw-bold">Your Message</label>
+            <textarea class="form-control mb-3" id="messageInput" rows="4" placeholder="Type your message here..."></textarea>
+            <button class="btn btn-primary w-100 mb-3" id="encodeBtn" style="border-radius:10px;">
+              <i class="bi bi-shuffle"></i> Scramble Message
+            </button>
+            <div id="outputSection" class="d-none">
+              <label class="form-label fw-bold">
+                Scrambled Code <i class="bi bi-clipboard copy-btn" id="copyBtn" title="Copy to clipboard"></i>
+              </label>
+              <div class="code-output" id="codeOutput" style="background:#1e1b4b;color:#10b981;font-family:'Courier New',monospace;padding:20px;border-radius:10px;word-break:break-all;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="algo-info mt-4" style="background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%);color:white;padding:20px;border-radius:15px;margin-top:20px;">
+          <h5><i class="bi bi-info-circle"></i> How It Works</h5>
+          <p class="mb-0"><strong>Algorithm:</strong> Each character is replaced by a unique symbol set or pair (A→XZ, B→QW, 0→!@, etc). Coding and decoding use the same map for perfect reversal.</p>
+        </div>
+        <div class="card shadow-lg mt-4" style="border-radius:20px;">
+          <div class="card-header bg-warning text-dark text-center" style="border-radius:20px 20px 0 0;">
+            <h5><i class="bi bi-arrow-repeat"></i> Code Translator (Decoder)</h5>
+            <p class="mb-0">Paste your scrambled code below to retrieve the original message</p>
+          </div>
+          <div class="card-body p-4">
+            <label class="form-label fw-bold">Scrambled Code</label>
+            <textarea class="form-control mb-3" id="decodeInput" rows="3" placeholder="Paste scrambled code here..."></textarea>
+            <button class="btn btn-warning w-100 mb-2" id="decodeBtn" style="border-radius:10px;">
+              <i class="bi bi-arrow-repeat"></i> Decode
+            </button>
+            <div id="decodedSection" class="d-none">
+              <label class="form-label fw-bold">Decoded Message</label>
+              <div class="code-output bg-light text-dark" id="decodedOutput" style="border-radius:10px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card shadow-lg mt-4 d-none" id="historyCard" style="border-radius:20px;">
+          <div class="card-header bg-success text-white text-center" style="border-radius:20px 20px 0 0;">
+            <h3><i class="bi bi-clock-history"></i> Your Encoding History</h3>
+          </div>
+          <div class="card-body p-4">
+            <div id="historyContainer">
+              <p class="text-muted text-center">No history yet. Start encoding messages!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mb-5" id="about">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card shadow-lg">
+          <div class="card-header bg-dark text-white text-center">
+            <h3><i class="bi bi-info-circle"></i> About Scrambling the Code</h3>
+          </div>
+          <div class="card-body p-4">
+            <h5>What is this?</h5>
+            <p>Scrambling the Code is a message encoding tool that transforms your plain text into scrambled codes using a deterministic algorithm. With the decoder, you can reverse it back.</p>
+            <h5>Features</h5>
+            <ul>
+              <li>Deterministic encoding/decoding - same input always gives the same output</li>
+              <li>User authentication with persistent accounts</li>
+              <li>History tracking for all encodings</li>
+              <li>Clean Bootstrap interface</li>
+              <li>Copy-to-clipboard for code output</li>
+            </ul>
+            <h5>The Algorithm</h5>
+            <ul>
+              <li>Fixed unique codes for letters (A→XZ, B→QW), digits (0→!@...), other characters unchanged</li>
+              <li>Perfectly reversible: same coding/decoding map</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="bg-dark text-white text-center py-3 mt-5">&copy; 2025 Scrambling the Code. All rights reserved.</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // navbar dynamic auth logic
+    function updateNavbarAuth() {
+      const currentUser = JSON.parse(localStorage.getItem('currentUser') || "null");
+      const links = document.getElementById('navbarLinks');
+      Array.from(links.querySelectorAll('.auth-dynamic')).forEach(el => el.remove());
+      if (currentUser && currentUser.name) {
+        const welcome = document.createElement('li');
+        welcome.className = "nav-item auth-dynamic";
+        welcome.innerHTML = `<span class="nav-link">Welcome <b>${currentUser.name}</b></span>`;
+        const logout = document.createElement('li');
+        logout.className = "nav-item auth-dynamic";
+        logout.innerHTML = `<a href="#" class="nav-link text-danger" id="logoutBtn">Logout</a>`;
+        links.appendChild(welcome);
+        links.appendChild(logout);
+        document.getElementById('logoutBtn').onclick = function(e) {
+          e.preventDefault(); localStorage.removeItem('currentUser'); updateNavbarAuth(); window.location.href = 'index.html';
+        }
+      } else {
+        const login = document.createElement('li');
+        login.className = "nav-item auth-dynamic";
+        login.innerHTML = `<a href="login.html" class="nav-link">Login</a>`;
+        const signup = document.createElement('li');
+        signup.className = "nav-item auth-dynamic";
+        signup.innerHTML = `<a href="signup.html" class="nav-link">Sign Up</a>`;
+        links.appendChild(login); links.appendChild(signup);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', updateNavbarAuth);
+
+    // --- ENCODER/DECODER ALGO ---
+    const mapIn = {}; const mapOut = {};
+    (() => {
+      const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const codes = ['XZ','QW','ER','TY','UI','OP','AS','DF','GH','JK','LZ','XC','VB','NM','ZA','SX','DC','FV','GB','HN','JM','KL','PO','IU','YT','RE'];
+      letters.split('').forEach((L,i)=>{mapIn[L]=codes[i];mapOut[codes[i]]=L;});
+      '0123456789'.split('').forEach((D,i)=>{const sym= ['!@','#$','%^','&*','()','-_','+=','{}','[]','<>'][i];mapIn[D]=sym;mapOut[sym]=D;});
+    })();
+    function encode(msg) { return msg.toUpperCase().split('').map(ch=>mapIn[ch]||ch).join(''); }
+    function decode(code) {
+      let res='',i=0;
+      while(i<code.length){
+        const two=code.substr(i,2);
+        if(mapOut[two]){res+=mapOut[two];i+=2;}
+        else {res+=code[i];i++;}
+      }
+      return res;
+    }
+    document.getElementById('encodeBtn').onclick = () => {
+      const msg = document.getElementById('messageInput').value;
+      const coded = encode(msg);
+      document.getElementById('codeOutput').textContent=coded;
+      document.getElementById('outputSection').classList.remove('d-none');
+      if(window.addToHistory) addToHistory(msg,coded);
+    };
+    document.getElementById('copyBtn').onclick = () => navigator.clipboard.writeText(document.getElementById('codeOutput').textContent);
+    document.getElementById('decodeBtn').onclick = () => {
+      const txt=decode(document.getElementById('decodeInput').value);
+      document.getElementById('decodedOutput').textContent=txt;
+      document.getElementById('decodedSection').classList.remove('d-none');
+    };
+    document.getElementById('historyLink').onclick = e => {
+      e.preventDefault();
+      if(!localStorage.getItem('currentUser') ){alert('Login first');location='login.html';return;}
+      if(window.displayHistory) displayHistory();
+      document.getElementById('historyCard').classList.remove('d-none');
+      document.getElementById('historyCard').scrollIntoView();
+    };
+  </script>
 </body>
 </html>
