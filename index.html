@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Scrambling the Code</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="custom.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/custom.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 </head>
 <body>
@@ -24,7 +24,6 @@
       </div>
     </div>
   </nav>
-
   <div class="container main-container" style="margin-top:90px;margin-bottom:50px;">
     <div class="row justify-content-center">
       <div class="col-lg-8">
@@ -35,11 +34,11 @@
           </div>
           <div class="card-body p-4">
             <label class="form-label fw-bold">Your Message</label>
-            <textarea class="form-control mb-3" id="messageInput" rows="4" placeholder="Type your message here..."></textarea>
+            <textarea class="form-control mb-3" id="messageInput" placeholder="Type your message here..." rows="4"></textarea>
             <button class="btn btn-primary w-100 mb-3" id="encodeBtn" style="border-radius:10px;">
               <i class="bi bi-shuffle"></i> Scramble Message
             </button>
-            <div id="outputSection" class="d-none">
+            <div class="d-none" id="outputSection">
               <label class="form-label fw-bold">
                 Scrambled Code <i class="bi bi-clipboard copy-btn" id="copyBtn" title="Copy to clipboard"></i>
               </label>
@@ -49,7 +48,7 @@
         </div>
         <div class="algo-info mt-4" style="background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%);color:white;padding:20px;border-radius:15px;margin-top:20px;">
           <h5><i class="bi bi-info-circle"></i> How It Works</h5>
-          <p class="mb-0"><strong>Algorithm:</strong> Each character is replaced by a unique symbol set or pair (A→XZ, B→QW, 0→!@, etc). Coding and decoding use the same map for perfect reversal.</p>
+          <p class="mb-0">Algorithm: Each character is replaced by a unique symbol set or pair (A→XZ, B→QW, 0→!@, etc). Coding and decoding use the same map for perfect reversal.</p>
         </div>
         <div class="card shadow-lg mt-4" style="border-radius:20px;">
           <div class="card-header bg-warning text-dark text-center" style="border-radius:20px 20px 0 0;">
@@ -58,11 +57,11 @@
           </div>
           <div class="card-body p-4">
             <label class="form-label fw-bold">Scrambled Code</label>
-            <textarea class="form-control mb-3" id="decodeInput" rows="3" placeholder="Paste scrambled code here..."></textarea>
+            <textarea class="form-control mb-3" id="decodeInput" placeholder="Paste scrambled code here..." rows="3"></textarea>
             <button class="btn btn-warning w-100 mb-2" id="decodeBtn" style="border-radius:10px;">
               <i class="bi bi-arrow-repeat"></i> Decode
             </button>
-            <div id="decodedSection" class="d-none">
+            <div class="d-none" id="decodedSection">
               <label class="form-label fw-bold">Decoded Message</label>
               <div class="code-output bg-light text-dark" id="decodedOutput" style="border-radius:10px;"></div>
             </div>
@@ -81,7 +80,6 @@
       </div>
     </div>
   </div>
-
   <div class="container mb-5" id="about">
     <div class="row justify-content-center">
       <div class="col-lg-8">
@@ -109,8 +107,9 @@
       </div>
     </div>
   </div>
-  <footer class="bg-dark text-white text-center py-3 mt-5">&copy; 2025 Scrambling the Code. All rights reserved.</footer>
+  <footer class="bg-dark text-white text-center py-3 mt-5">© 2025 Scrambling the Code. All rights reserved.</footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/auth.js"></script>
   <script>
     // navbar dynamic auth logic
     function updateNavbarAuth() {
@@ -140,7 +139,6 @@
       }
     }
     window.addEventListener('DOMContentLoaded', updateNavbarAuth);
-
     // --- ENCODER/DECODER ALGO ---
     const mapIn = {}; const mapOut = {};
     (() => {
